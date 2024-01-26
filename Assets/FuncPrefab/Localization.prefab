@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2501683028203036027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2674391630450389283}
+  - component: {fileID: 2573140440370602415}
+  - component: {fileID: 1183671806482449499}
+  m_Layer: 0
+  m_Name: Localization
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2674391630450389283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501683028203036027}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.4680195, y: 104.4162, z: -97.2544}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2573140440370602415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501683028203036027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b2975ba5862f74da9a84c6c1a2b7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  languages:
+  - {fileID: 11400000, guid: 3bc09c4c266b22b43a56170325b187ab, type: 2}
+  - {fileID: 11400000, guid: 771a3066d39421e41a7b800760358e0b, type: 2}
+  - {fileID: 11400000, guid: 34b4baaf361ef20488757ea525f7cc97, type: 2}
+  - {fileID: 11400000, guid: 104d52408f5e2e94b9ed40b41c39aaca, type: 2}
+  - {fileID: 11400000, guid: d5ddfc112497af245957b38a461fac69, type: 2}
+  - {fileID: 11400000, guid: e6ef73e5262dc7c42b3bbfb784759555, type: 2}
+  - {fileID: 11400000, guid: 8e8d5edbb9341784999a4d6d6f6a3f87, type: 2}
+  - {fileID: 11400000, guid: cf383391c603a724cbb3bf179391e82d, type: 2}
+  defaultLanguage: {fileID: 11400000, guid: 3bc09c4c266b22b43a56170325b187ab, type: 2}
+--- !u!114 &1183671806482449499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501683028203036027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a07481f42d4662449d0bae451c53635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locked: 1
+  updateType: 1
+  addAfterID: settingsMenu.controls.toggleMap
+  removeID: settingsMenu.exitNote
+  renameID: 
+  newID: settingsMenu.controls.togglePause
+  newValue: Pause
