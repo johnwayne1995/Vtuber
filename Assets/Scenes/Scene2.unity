@@ -197,6 +197,10 @@ PrefabInstance:
       value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 7243345195693581024, guid: 1087e7fafcdae5a4799e6b9ead29892d, type: 3}
+      propertyPath: AudioTypes.Array.data[0].Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 96bb839cc9765ab4494e954fa9396e54, type: 3}
+    - target: {fileID: 7243345195693581024, guid: 1087e7fafcdae5a4799e6b9ead29892d, type: 3}
       propertyPath: AudioTypes.Array.data[1].Name
       value: Effect
       objectReference: {fileID: 0}

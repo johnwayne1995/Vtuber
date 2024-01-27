@@ -10,7 +10,7 @@ public class anchorListController : MonoBehaviour
     public RectTransform Dialog;
     public List<Transform> anchorList;
     private Vector2 indicatorPos;
-    private float lastTime;
+    private float beginTime;
     private float duration = 1;
     private int anchorIndex;
     private int anchorCount;
@@ -18,13 +18,14 @@ public class anchorListController : MonoBehaviour
     public Track track;
     private int lineProgress;
     private int BPM = 120;
+    private float addTime;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Start");
         anchorCount = anchorList.Count;
-        lastTime = Time.fixedTime;
+        beginTime = Time.fixedTime;
         lineProgress = 1;
         var index = 0;
         foreach (var clip in track.TrackClips)
@@ -58,6 +59,7 @@ public class anchorListController : MonoBehaviour
         }
 
         lineProgress++;
+        addTime = 0;
         var index = 0;
         foreach (var clip in track.TrackClips)
         {
@@ -71,7 +73,6 @@ public class anchorListController : MonoBehaviour
 
     private void RestartDebug()
     {
-        lastTime = Time.fixedTime;
         anchorIndex = 0;
     }
 
@@ -99,7 +100,7 @@ public class anchorListController : MonoBehaviour
                    track.TrackClips[anchorIndex].triggerTime;
         duration = duration * 60.0f / BPM;
         // 更新经过的时间
-        float elapsedTime = Time.time - lastTime;
+        float elapsedTime = Time.fixedTime - (beginTime + (lineProgress - 1)* 4 * 60f / BPM + addTime);
 
         // 计算当前时间点的插值比例
         float t = elapsedTime / duration;
@@ -112,12 +113,14 @@ public class anchorListController : MonoBehaviour
         float gapNext = anchorList[(anchorIndex + 1) % anchorCount].position.x - anchorList[anchorIndex % anchorCount].position.x ;
         indicator.transform.position = new Vector3(anchorList[anchorIndex % anchorCount].position.x + gapNext * t,
             anchorList[0].position.y + 100 + value * 100f);
-        if(Time.fixedTime - lastTime > duration)
+        if(elapsedTime > duration)
         {
+            addTime += duration;
             anchorIndex++;
-            lastTime = Time.fixedTime;
             if(anchorIndex + 1 < anchorCount)
                 SetUnTransParent(anchorList[anchorIndex].GetComponent<Text>());
+            if(anchorIndex == 1)
+                Debug.Log("Begin:"+Time.fixedTime);
         }
     }
 }
