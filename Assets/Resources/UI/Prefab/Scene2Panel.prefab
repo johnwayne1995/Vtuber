@@ -927,7 +927,6 @@ MonoBehaviour:
   - {fileID: 28130749881123265}
   - {fileID: 6989682812806631474}
   track: {fileID: 11400000, guid: 991f64d8389f94c45bcdbfb5d01ab954, type: 2}
-  BPM: 30
 --- !u!114 &6800241669941402939
 MonoBehaviour:
   m_ObjectHideFlags: 0

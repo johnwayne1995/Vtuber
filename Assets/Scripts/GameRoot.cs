@@ -40,6 +40,7 @@ public class GameRoot : MonoBehaviour
         UIManager = new UIManager1();
         UIManager_Root = UIManager;
         SceneControl = new SceneControl();
+        
     }
 
     // Start is called before the first frame update

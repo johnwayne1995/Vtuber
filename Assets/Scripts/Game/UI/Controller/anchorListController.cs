@@ -98,7 +98,6 @@ public class anchorListController : MonoBehaviour
         duration = track.TrackClips[anchorIndex + 1].triggerTime -
                    track.TrackClips[anchorIndex].triggerTime;
         duration = duration * 60.0f / BPM;
-        Debug.Log(duration);
         // 更新经过的时间
         float elapsedTime = Time.time - lastTime;
 
