@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be96b748d2444c968e67b3ecf265737d, type: 3}
-  m_Name: Track
+  m_Name: Track1
   m_EditorClassIdentifier: 
   TrackClips:
   - triggerTime: 0
@@ -25,6 +25,6 @@ MonoBehaviour:
   - triggerTime: 3
     word: hey
     isHide: 0
-  - triggerTime: 5
+  - triggerTime: 3.5
     word: ____
     isHide: 0

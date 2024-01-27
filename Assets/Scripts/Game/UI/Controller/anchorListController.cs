@@ -16,12 +16,16 @@ public class anchorListController : MonoBehaviour
     private int anchorCount;
     private AnimationCurve curve;
     public Track track;
+    private int lineProgress;
+    public int BPM = 30;
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Start");
         anchorCount = anchorList.Count;
         lastTime = Time.fixedTime;
+        lineProgress = 1;
         var index = 0;
         foreach (var clip in track.TrackClips)
         {
@@ -32,6 +36,36 @@ public class anchorListController : MonoBehaviour
         indicator.transform.position = new Vector3(anchorList[0].position.x, anchorList[0].position.y);
         indicatorPos = new Vector2(indicator.transform.position.x, indicator.transform.position.z);
         curve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+        EventManager.AddEvent("RestartDebug", RestartDebug);
+        EventManager.AddEvent("OnNext", OnNext);
+    }
+
+    private void OnNext()
+    {
+        track = Resources.Load<Track>("Track"+(lineProgress+1));
+        if (track == null)
+        {
+            Debug.LogWarning("结束了");
+            return;
+        }
+
+        lineProgress++;
+        Debug.Log(lineProgress);
+        var index = 0;
+        foreach (var clip in track.TrackClips)
+        {
+            if(index != 0 )
+                SetTransParent(anchorList[index].GetComponent<Text>());
+            anchorList[index++].GetComponent<Text>().text = clip.word;
+        }
+        anchorCount = track.TrackClips.Count;
+        RestartDebug();
+    }
+
+    private void RestartDebug()
+    {
+        lastTime = Time.fixedTime;
+        anchorIndex = 0;
     }
 
     private void SetTransParent(Text text)
@@ -49,12 +83,13 @@ public class anchorListController : MonoBehaviour
     {
         if (anchorIndex + 1 == anchorCount)
         {
+            OnNext();
             return;
         }
         Dialog.gameObject.SetActive(false);
         Dialog.gameObject.SetActive(true);
         duration = track.TrackClips[anchorIndex].triggerTime - (anchorIndex == 0 ? 0 : track.TrackClips[anchorIndex - 1].triggerTime);
-        
+        duration = duration * 60.0f / BPM;
         // 更新经过的时间
         float elapsedTime = Time.time - lastTime;
 
@@ -70,7 +105,6 @@ public class anchorListController : MonoBehaviour
             lastTime = Time.fixedTime;
             if(anchorIndex + 1 < anchorCount)
                 SetUnTransParent(anchorList[anchorIndex].GetComponent<Text>());
-            Debug.Log("RefreshUI");
         }
     }
 }
