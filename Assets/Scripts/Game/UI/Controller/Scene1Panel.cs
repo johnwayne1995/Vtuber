@@ -34,9 +34,12 @@ namespace Game.UI.Controller
 
         private void Load()
         {
-            Scene2 scene2 = new Scene2();
-            GameRoot.GetInstance().SceneControl_Root.SceneLoad(scene2.SceneName, scene2);
-            GameRoot.GetInstance().UIManager_Root.Push(new Scene2Panel());
+            GamePlay gamePlay = new GamePlay();
+            GameRoot.GetInstance().SceneControl_Root.SceneLoad(gamePlay.SceneName, gamePlay);
+            GameRoot.GetInstance().UIManager_Root.Push(new UIGamePlayController());
+            // Scene2 scene2 = new Scene2();
+            // GameRoot.GetInstance().SceneControl_Root.SceneLoad(scene2.SceneName, scene2);
+            // GameRoot.GetInstance().UIManager_Root.Push(new Scene2Panel());
         }
     }
 }

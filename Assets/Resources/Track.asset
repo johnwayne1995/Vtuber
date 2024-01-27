@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be96b748d2444c968e67b3ecf265737d, type: 3}
+  m_Name: Track
+  m_EditorClassIdentifier: 
+  TrackClips:
+  - triggerTime: 0
+    word: ______
+    isHide: 0
+  - triggerTime: 1
+    word: "\u4F60\u7684\u4EBA\u751F\u76EE\u6807\uFF1A"
+    isHide: 0
+  - triggerTime: 2
+    word: "\u5B9E\u73B0\u68A6\u60F3"
+    isHide: 0
+  - triggerTime: 3
+    word: hey
+    isHide: 0
+  - triggerTime: 5
+    word: ____
+    isHide: 0
