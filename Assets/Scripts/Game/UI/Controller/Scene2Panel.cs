@@ -21,6 +21,7 @@ namespace Game.UI.Controller
             
             UIMethods.GetInstance().GetOrAddSingleComponentInChild<Button>(ActiveObj, "Restart").onClick.AddListener(OnRestart);
             UIMethods.GetInstance().GetOrAddSingleComponentInChild<Button>(ActiveObj, "Next").onClick.AddListener(OnNext);
+            EventManager.AddEvent("GameOver", Back);
 
         }
 

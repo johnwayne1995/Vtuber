@@ -17,7 +17,7 @@ public class anchorListController : MonoBehaviour
     private AnimationCurve curve;
     public Track track;
     private int lineProgress;
-    public int BPM = 30;
+    private int BPM = 120;
 
     // Start is called before the first frame update
     void Start()
@@ -40,17 +40,24 @@ public class anchorListController : MonoBehaviour
         EventManager.AddEvent("OnNext", OnNext);
     }
 
+    private void OnDestroy()
+    {
+        EventManager.RemoveEvent("RestartDebug", RestartDebug);
+        EventManager.RemoveEvent("OnNext", OnNext);
+    }
+
     private void OnNext()
     {
+        Debug.Log(lineProgress);
         track = Resources.Load<Track>("Track"+(lineProgress+1));
         if (track == null)
         {
             Debug.LogWarning("结束了");
+            EventManager.DispatchEvent("GameOver");
             return;
         }
 
         lineProgress++;
-        Debug.Log(lineProgress);
         var index = 0;
         foreach (var clip in track.TrackClips)
         {
@@ -77,7 +84,7 @@ public class anchorListController : MonoBehaviour
     {
         text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
     }
-
+    
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -88,17 +95,24 @@ public class anchorListController : MonoBehaviour
         }
         Dialog.gameObject.SetActive(false);
         Dialog.gameObject.SetActive(true);
-        duration = track.TrackClips[anchorIndex].triggerTime - (anchorIndex == 0 ? 0 : track.TrackClips[anchorIndex - 1].triggerTime);
+        duration = track.TrackClips[anchorIndex + 1].triggerTime -
+                   track.TrackClips[anchorIndex].triggerTime;
         duration = duration * 60.0f / BPM;
+        Debug.Log(duration);
         // 更新经过的时间
         float elapsedTime = Time.time - lastTime;
 
         // 计算当前时间点的插值比例
-        float t = anchorIndex == 0 ? 0 : elapsedTime / duration;
+        float t = elapsedTime / duration;
         
-        float value = anchorIndex == 0 ? 0 : Mathf.PingPong((elapsedTime) / (0.5f * duration), 1f);
+        float value = Mathf.PingPong((elapsedTime), duration * 0.5f);
+        if(anchorIndex == 0)
+            value = Mathf.PingPong((elapsedTime) + duration, duration);
+        if(anchorIndex == track.TrackClips.Count - 2)
+            value = Mathf.PingPong((elapsedTime), duration);
         float gapNext = anchorList[(anchorIndex + 1) % anchorCount].position.x - anchorList[anchorIndex % anchorCount].position.x ;
-        indicator.transform.position =  new Vector3(anchorList[anchorIndex % anchorCount].position.x + gapNext * t, anchorList[0].position.y+100+value * 20f);
+        indicator.transform.position = new Vector3(anchorList[anchorIndex % anchorCount].position.x + gapNext * t,
+            anchorList[0].position.y + 100 + value * 100f);
         if(Time.fixedTime - lastTime > duration)
         {
             anchorIndex++;

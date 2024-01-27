@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Track2
   m_EditorClassIdentifier: 
   TrackClips:
-  - triggerTime: 0
+  - triggerTime: 0.5
     word: ______
     isHide: 0
   - triggerTime: 1
@@ -22,6 +22,6 @@ MonoBehaviour:
   - triggerTime: 2
     word: "\u56DB\u5DDD\u7701\u7684"
     isHide: 0
-  - triggerTime: 3
+  - triggerTime: 2.5
     word: ____
     isHide: 0
